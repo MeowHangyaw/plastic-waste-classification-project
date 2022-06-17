@@ -12,21 +12,21 @@ def crop_center(pil_img, crop_width, crop_height):
                          (img_width + crop_width) // 2,
                          (img_height + crop_height) // 2))
 
-def folderer(folder):
-    path = os.listdir(folder)
-    print(path)
-    for a in range(len(path)):
-        subpath = f'{folder}/{path[a]}'
-        print(subpath)
-        subpath = os.listdir(subpath)
-        print(subpath)
-        for b in range(len(subpath)):
-            subsubpath = f'{folder}/{path[a]}/{subpath[b]}'
-            for file in os.listdir(subsubpath):
-                f_img = subsubpath + "/" + file
-                print(f_img)
-                img = Image.open(f_img)
-                img = img.resize((224,224))
-                img.save(f_img)
+parrentfolder = r'C:\Users\chula\OneDrive\Documents\Code\projects\github\plastic-waste-classification-project\images2'
+print(parrentfolder)
+folderlist = os.listdir(parrentfolder)
+print(folderlist)
+for x in range(len(folderlist)):
+    path = f"{parrentfolder}\{folderlist[x]}"
+    e = os.listdir(path)
+    for z in range(len(e)):
+        newpath = path + '/' + e[z]
+        print(newpath)
+        lol = os.listdir(newpath)
+        for i in range(len(lol)):
+            newerpath = f'{newpath}\{lol[i]}'
+            print(newerpath)
+            img = Image.open(newerpath)
+            img = img.resize((224,224))
+            img.save(newerpath)
 
-folderer(folder = str(input("Selected Folder: ")))
